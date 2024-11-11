@@ -1,0 +1,136 @@
+(base) krzysztof@MacBook-Pro-Krzysztof tbd-workshop-1 % terraform plan -out=tfplan -lock=false
+(base) krzysztof@MacBook-Pro-Krzysztof tbd-workshop-1 % terraform show tfplan                  
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+  ~ update in-place
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # module.dbt_docker_image.docker_image.dbt will be created
+  + resource "docker_image" "dbt" {
+      + id          = (known after apply)
+      + image_id    = (known after apply)
+      + name        = "eu.gcr.io/tbd-2024z-313787/dbt:1.7.13"
+      + repo_digest = (known after apply)
+      + triggers    = {
+          + "dir_sha1" = "16d9a47a192d8b357f5d8b2ba5b77c3a61503388"
+        }
+
+      + build {
+          + build_args     = {
+              + "DBT_SPARK_VERSION" = "1.7.1"
+              + "DBT_VERSION"       = "1.7.13"
+              + "PROJECT_NAME"      = "tbd-2024z-313787"
+              + "SPARK_VERSION"     = "3.3.2"
+            }
+          + cache_from     = []
+          + context        = "modules/dbt_docker_image/resources"
+          + dockerfile     = "Dockerfile"
+          + extra_hosts    = []
+          + platform       = "amd64"
+          + remove         = true
+          + security_opt   = []
+          + tag            = [
+              + "eu.gcr.io/tbd-2024z-313787/dbt:latest",
+            ]
+            # (10 unchanged attributes hidden)
+        }
+    }
+
+  # module.dbt_docker_image.docker_registry_image.dbt will be created
+  + resource "docker_registry_image" "dbt" {
+      + id                   = (known after apply)
+      + insecure_skip_verify = false
+      + keep_remotely        = true
+      + name                 = "eu.gcr.io/tbd-2024z-313787/dbt:1.7.13"
+      + sha256_digest        = (known after apply)
+      + triggers             = {
+          + "dir_sha1" = "16d9a47a192d8b357f5d8b2ba5b77c3a61503388"
+        }
+    }
+
+  # module.jupyter_docker_image.docker_image.jupyter will be created
+  + resource "docker_image" "jupyter" {
+      + id          = (known after apply)
+      + image_id    = (known after apply)
+      + name        = "eu.gcr.io/tbd-2024z-313787/jupyter:3.6.3"
+      + repo_digest = (known after apply)
+      + triggers    = {
+          + "dir_sha1" = "0ae070775d3102ba9dae4391e78e62e46185e752"
+        }
+
+      + build {
+          + build_args     = {
+              + "DBT_SPARK_VERSION"     = "1.7.1"
+              + "DBT_VERSION"           = "1.7.13"
+              + "GCS_CONNECTOR_VERSION" = "2.2.17"
+              + "JUPYTERLAB_VERSION"    = "3.6.3"
+              + "PROJECT_NAME"          = "tbd-2024z-313787"
+              + "SPARK_VERSION"         = "3.3.2"
+            }
+          + cache_from     = []
+          + context        = "modules/jupyter_docker_image/resources"
+          + dockerfile     = "Dockerfile"
+          + extra_hosts    = []
+          + platform       = "amd64"
+          + remove         = true
+          + security_opt   = []
+          + tag            = [
+              + "eu.gcr.io/tbd-2024z-313787/jupyter:latest",
+            ]
+            # (10 unchanged attributes hidden)
+        }
+    }
+
+  # module.jupyter_docker_image.docker_registry_image.jupyterlab will be created
+  + resource "docker_registry_image" "jupyterlab" {
+      + id                   = (known after apply)
+      + insecure_skip_verify = false
+      + keep_remotely        = true
+      + name                 = "eu.gcr.io/tbd-2024z-313787/jupyter:3.6.3"
+      + sha256_digest        = (known after apply)
+      + triggers             = {
+          + "dir_sha1" = "0ae070775d3102ba9dae4391e78e62e46185e752"
+        }
+    }
+
+  # module.vertex_ai_workbench.data.google_project.project will be read during apply
+  # (depends on a resource or a module with changes pending)
+ <= data "google_project" "project" {
+      + auto_create_network = (known after apply)
+      + billing_account     = (known after apply)
+      + deletion_policy     = (known after apply)
+      + effective_labels    = (known after apply)
+      + folder_id           = (known after apply)
+      + id                  = (known after apply)
+      + labels              = (known after apply)
+      + name                = (known after apply)
+      + number              = (known after apply)
+      + org_id              = (known after apply)
+      + project_id          = "tbd-2024z-313787"
+      + skip_delete         = (known after apply)
+      + terraform_labels    = (known after apply)
+    }
+
+  # module.vertex_ai_workbench.google_project_iam_binding.token_creator_role will be updated in-place
+  ~ resource "google_project_iam_binding" "token_creator_role" {
+        id      = "tbd-2024z-313787/roles/iam.serviceAccountTokenCreator"
+      ~ members = [
+          - "serviceAccount:926111983421-compute@developer.gserviceaccount.com",
+        ] -> (known after apply)
+        # (3 unchanged attributes hidden)
+    }
+
+  # module.vertex_ai_workbench.google_storage_bucket_iam_binding.binding will be updated in-place
+  ~ resource "google_storage_bucket_iam_binding" "binding" {
+        id      = "b/tbd-2024z-313787-conf/roles/storage.objectViewer"
+      ~ members = [
+          - "serviceAccount:926111983421-compute@developer.gserviceaccount.com",
+        ] -> (known after apply)
+        # (3 unchanged attributes hidden)
+    }
+
+Plan: 4 to add, 2 to change, 0 to destroy.

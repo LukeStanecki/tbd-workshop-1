@@ -1,0 +1,135 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+  [33m~[0m update in-place[0m
+ [36m<=[0m read (data resources)[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.dbt_docker_image.docker_image.dbt[0m will be created
+[0m  [32m+[0m[0m resource "docker_image" "dbt" {
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m image_id    = (known after apply)
+      [32m+[0m[0m name        = "eu.gcr.io/tbd-2024z-313787/dbt:1.7.13"
+      [32m+[0m[0m repo_digest = (known after apply)
+      [32m+[0m[0m triggers    = {
+          [32m+[0m[0m "dir_sha1" = "16d9a47a192d8b357f5d8b2ba5b77c3a61503388"
+        }
+
+      [32m+[0m[0m build {
+          [32m+[0m[0m build_args     = {
+              [32m+[0m[0m "DBT_SPARK_VERSION" = "1.7.1"
+              [32m+[0m[0m "DBT_VERSION"       = "1.7.13"
+              [32m+[0m[0m "PROJECT_NAME"      = "tbd-2024z-313787"
+              [32m+[0m[0m "SPARK_VERSION"     = "3.3.2"
+            }
+          [32m+[0m[0m cache_from     = []
+          [32m+[0m[0m context        = "modules/dbt_docker_image/resources"
+          [32m+[0m[0m dockerfile     = "Dockerfile"
+          [32m+[0m[0m extra_hosts    = []
+          [32m+[0m[0m platform       = "amd64"
+          [32m+[0m[0m remove         = true
+          [32m+[0m[0m security_opt   = []
+          [32m+[0m[0m tag            = [
+              [32m+[0m[0m "eu.gcr.io/tbd-2024z-313787/dbt:latest",
+            ]
+            [90m# (10 unchanged attributes hidden)[0m[0m
+        }
+    }
+
+[1m  # module.dbt_docker_image.docker_registry_image.dbt[0m will be created
+[0m  [32m+[0m[0m resource "docker_registry_image" "dbt" {
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m insecure_skip_verify = false
+      [32m+[0m[0m keep_remotely        = true
+      [32m+[0m[0m name                 = "eu.gcr.io/tbd-2024z-313787/dbt:1.7.13"
+      [32m+[0m[0m sha256_digest        = (known after apply)
+      [32m+[0m[0m triggers             = {
+          [32m+[0m[0m "dir_sha1" = "16d9a47a192d8b357f5d8b2ba5b77c3a61503388"
+        }
+    }
+
+[1m  # module.jupyter_docker_image.docker_image.jupyter[0m will be created
+[0m  [32m+[0m[0m resource "docker_image" "jupyter" {
+      [32m+[0m[0m id          = (known after apply)
+      [32m+[0m[0m image_id    = (known after apply)
+      [32m+[0m[0m name        = "eu.gcr.io/tbd-2024z-313787/jupyter:3.6.3"
+      [32m+[0m[0m repo_digest = (known after apply)
+      [32m+[0m[0m triggers    = {
+          [32m+[0m[0m "dir_sha1" = "0ae070775d3102ba9dae4391e78e62e46185e752"
+        }
+
+      [32m+[0m[0m build {
+          [32m+[0m[0m build_args     = {
+              [32m+[0m[0m "DBT_SPARK_VERSION"     = "1.7.1"
+              [32m+[0m[0m "DBT_VERSION"           = "1.7.13"
+              [32m+[0m[0m "GCS_CONNECTOR_VERSION" = "2.2.17"
+              [32m+[0m[0m "JUPYTERLAB_VERSION"    = "3.6.3"
+              [32m+[0m[0m "PROJECT_NAME"          = "tbd-2024z-313787"
+              [32m+[0m[0m "SPARK_VERSION"         = "3.3.2"
+            }
+          [32m+[0m[0m cache_from     = []
+          [32m+[0m[0m context        = "modules/jupyter_docker_image/resources"
+          [32m+[0m[0m dockerfile     = "Dockerfile"
+          [32m+[0m[0m extra_hosts    = []
+          [32m+[0m[0m platform       = "amd64"
+          [32m+[0m[0m remove         = true
+          [32m+[0m[0m security_opt   = []
+          [32m+[0m[0m tag            = [
+              [32m+[0m[0m "eu.gcr.io/tbd-2024z-313787/jupyter:latest",
+            ]
+            [90m# (10 unchanged attributes hidden)[0m[0m
+        }
+    }
+
+[1m  # module.jupyter_docker_image.docker_registry_image.jupyterlab[0m will be created
+[0m  [32m+[0m[0m resource "docker_registry_image" "jupyterlab" {
+      [32m+[0m[0m id                   = (known after apply)
+      [32m+[0m[0m insecure_skip_verify = false
+      [32m+[0m[0m keep_remotely        = true
+      [32m+[0m[0m name                 = "eu.gcr.io/tbd-2024z-313787/jupyter:3.6.3"
+      [32m+[0m[0m sha256_digest        = (known after apply)
+      [32m+[0m[0m triggers             = {
+          [32m+[0m[0m "dir_sha1" = "0ae070775d3102ba9dae4391e78e62e46185e752"
+        }
+    }
+
+[1m  # module.vertex_ai_workbench.data.google_project.project[0m will be read during apply
+  # (depends on a resource or a module with changes pending)
+[0m [36m<=[0m[0m data "google_project" "project" {
+      [32m+[0m[0m auto_create_network = (known after apply)
+      [32m+[0m[0m billing_account     = (known after apply)
+      [32m+[0m[0m deletion_policy     = (known after apply)
+      [32m+[0m[0m effective_labels    = (known after apply)
+      [32m+[0m[0m folder_id           = (known after apply)
+      [32m+[0m[0m id                  = (known after apply)
+      [32m+[0m[0m labels              = (known after apply)
+      [32m+[0m[0m name                = (known after apply)
+      [32m+[0m[0m number              = (known after apply)
+      [32m+[0m[0m org_id              = (known after apply)
+      [32m+[0m[0m project_id          = "tbd-2024z-313787"
+      [32m+[0m[0m skip_delete         = (known after apply)
+      [32m+[0m[0m terraform_labels    = (known after apply)
+    }
+
+[1m  # module.vertex_ai_workbench.google_project_iam_binding.token_creator_role[0m will be updated in-place
+[0m  [33m~[0m[0m resource "google_project_iam_binding" "token_creator_role" {
+        id      = "tbd-2024z-313787/roles/iam.serviceAccountTokenCreator"
+      [33m~[0m[0m members = [
+          [31m-[0m[0m "serviceAccount:926111983421-compute@developer.gserviceaccount.com",
+        ] -> (known after apply)
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.vertex_ai_workbench.google_storage_bucket_iam_binding.binding[0m will be updated in-place
+[0m  [33m~[0m[0m resource "google_storage_bucket_iam_binding" "binding" {
+        id      = "b/tbd-2024z-313787-conf/roles/storage.objectViewer"
+      [33m~[0m[0m members = [
+          [31m-[0m[0m "serviceAccount:926111983421-compute@developer.gserviceaccount.com",
+        ] -> (known after apply)
+        [90m# (3 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m 4 to add, 2 to change, 0 to destroy.
+[0m
