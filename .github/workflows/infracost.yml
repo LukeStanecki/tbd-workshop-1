@@ -1,0 +1,27 @@
+name: Infracost
+
+on:
+  pull_request:
+    paths:
+      - '**/*.tf'
+      - 'infracost-usage.yml'
+
+jobs:
+  infracost:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Infracost
+        uses: infracost/actions/setup@v1
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      - name: Run Infracost breakdown
+        run: infracost breakdown --path=./ --usage-file=infracost-usage.yml --format=json --out-file=/tmp/infracost-out.json
+
+      - name: Post Infracost comment
+        uses: infracost/actions/comment@v1
+        with:
+          path: /tmp/infracost-out.json
