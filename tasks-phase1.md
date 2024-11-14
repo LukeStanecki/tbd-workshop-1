@@ -38,6 +38,7 @@ Aby uzyskać dostęp do interfejsu użytkownika YARN w klastrze (port 8088), nal
 gcloud compute ssh tbd-cluster-m \
     --project=tbd-2024z-313787 -- \
     -L 1080:tbd-cluster-m:8088 -N -n
+```` ``` ````
 
 ![yarnui.png][images/yarnui/yarnui.png]
    
