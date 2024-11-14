@@ -39,7 +39,7 @@ gcloud compute ssh tbd-cluster-m \
     --project=tbd-2024z-313787 -- \
     -L 1080:tbd-cluster-m:8088 -N -n
 
-[yarnui][images/yarnui/yarnui.png]
+![yarnui.png][images/yarnui/yarnui.png]
    
 1.  Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
