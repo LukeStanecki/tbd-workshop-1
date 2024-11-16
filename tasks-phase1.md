@@ -20,9 +20,10 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
+
     
     ***place the screenshot from GA after succesfull application of release***
-
+    ![after merge](images/phase1-task6p2/task6ii-po mergu.png)
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
@@ -55,7 +56,8 @@ For all the resources of type: `google_artifact_registry`, `google_storage_bucke
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
-
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/dc12153bde6b1149e811442c7111ca511dbf4291/infracost-usage.yml  
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/dc12153bde6b1149e811442c7111ca511dbf4291/.github/workflows/infracost.yml  
    ***place the screenshot from infracost output here***
 
 1.  Create a BigQuery dataset and an external table using SQL
