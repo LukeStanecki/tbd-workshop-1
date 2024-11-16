@@ -23,7 +23,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     
     ***place the screenshot from GA after succesfull application of release***
-    ![after merge](images/phase1-task6p2/task6ii-po mergu.png)
+
+    ![aftermerge](images/phase1-task6p2/task6ii-po mergu.png)
 
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
@@ -33,13 +34,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
    ## SSH Tunnelowanie do Klastrowego Interfejsu Użytkownika
 
-Aby uzyskać dostęp do interfejsu użytkownika YARN w klastrze (port 8088), nalezy skonfigurować tunel SSH, który przekieruje port lokalny na port klastra. Polecenie w terminalu:
+    Aby uzyskać dostęp do interfejsu użytkownika YARN w klastrze (port 8088), nalezy skonfigurować tunel SSH, który przekieruje port lokalny na port klastra. Polecenie w terminalu:
 
-```bash
-gcloud compute ssh tbd-cluster-m \
-    --project=tbd-2024z-313787 -- \
-    -L 1080:tbd-cluster-m:8088 -N -n
-```
+    ```bash
+    gcloud compute ssh tbd-cluster-m \
+        --project=tbd-2024z-313787 -- \
+        -L 1080:tbd-cluster-m:8088 -N -n
+    ```
 
 ![yarnui.png](images/yarnui/yarnui.png)
    
