@@ -59,75 +59,70 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/infracost-usage.yml#L1-L14 
 
 
-    /.github/workflows/infracost.yml
+    **Plik `.github/workflows/infracost.yml`:**
 
     ```yaml
-        name: Tech Tests
+name: Tech Tests
 
-        on: [pull_request]
-        permissions: read-all
+on: [pull_request]
+permissions: read-all
 
-        jobs:
-        iac_checks:
-            runs-on: ubuntu-latest
-            permissions:
-            contents: read
-            id-token: write
-            pull-requests: write
-            security-events: write
-            actions: read
+jobs:
+  iac_checks:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+      security-events: write
+      actions: read
 
-            steps:
-            - uses: 'actions/checkout@v3'
+    steps:
+      - uses: 'actions/checkout@v3'
 
-            - uses: hadolint/hadolint-action@v3.1.0
-                with:
-                recursive: true
-                verbose: true
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          recursive: true
+          verbose: true
 
-            # Authenticate with Google Cloud using Workload Identity Federation
-            - id: 'auth'
-                name: 'Authenticate to Google Cloud'
-                uses: 'google-github-actions/auth@v1'
-                with:
-                token_format: 'access_token'
-                workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
-                service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
+          service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
 
-            - name: Set up Infracost
-                uses: infracost/actions/setup@v2.1.0
-                with:
-                api-key: ${{ secrets.INFRACOST_API_KEY }}
+      - name: Set up Infracost
+        uses: infracost/actions/setup@v2.1.0
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
 
-            # Run Infracost to generate the baseline cost estimate
-            - name: Generate Infracost baseline cost estimate
-                run: |
-                infracost breakdown --path="." \
-                                    --usage-file="infracost-usage.yml" \
-                                    --format=json \
-                                    --out-file=/tmp/infracost-base.json
+      - name: Generate Infracost baseline cost estimate
+        run: |
+          infracost breakdown --path="." \
+                              --usage-file="infracost-usage.yml" \
+                              --format=json \
+                              --out-file=/tmp/infracost-base.json
 
-            # Checkout PR branch again
-            - name: Checkout PR branch
-                uses: actions/checkout@v3
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
 
-            # Run Infracost diff to compare PR changes with baseline
-            - name: Generate Infracost diff
-                run: |
-                infracost diff --path="." \
-                                --compare-to=/tmp/infracost-base.json \
-                                --format=json \
-                                --out-file=/tmp/infracost.json
+      - name: Generate Infracost diff
+        run: |
+          infracost diff --path="." \
+                          --compare-to=/tmp/infracost-base.json \
+                          --format=json \
+                          --out-file=/tmp/infracost.json
 
-            # Post Infracost diff as a comment in the PR
-            - name: Post Infracost comment
-                run: |
-                infracost comment github --path=/tmp/infracost.json \
-                                        --repo=$GITHUB_REPOSITORY \
-                                        --github-token=${{secrets.GITHUB_TOKEN}} \
-                                        --pull-request=${{github.event.pull_request.number}} \
-                                        --behavior=update
-    ```
+      - name: Post Infracost comment
+        run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                    --repo=$GITHUB_REPOSITORY \
+                                    --github-token=${{secrets.GITHUB_TOKEN}} \
+                                    --pull-request=${{github.event.pull_request.number}} \
+                                    --behavior=update
+```
     
    ***place the screenshot from infracost output here***
    ![infracost commit](images/infracost/infracost-iac-checks.png)
