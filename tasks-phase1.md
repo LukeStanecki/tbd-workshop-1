@@ -158,6 +158,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
+    ![vertexai](images/verexai/vertex-ai-session.png)
    
 12. Find and correct the error in spark-job.py
 
