@@ -135,7 +135,6 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 10.   Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
 
     ```sql
     CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
@@ -152,7 +151,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![biq-query-create.png](images/bigquery/biq-query-create.png)
 
    
-    ***why does ORC not require a table schema?***
+    ## Why does ORC not require a table schema?
     ORC (Optimized Row Columnar) is a self-describing columnar storage format, which means that it stores the schema and metadata directly within the file itself. This design eliminates the need for an external schema definition during the file creation or reading process. 
   
 11. Start an interactive session from Vertex AI workbench:
@@ -169,7 +168,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***place the link to the modified file and inserted terraform code***
     
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
