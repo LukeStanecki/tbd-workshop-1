@@ -56,8 +56,10 @@ For all the resources of type: `google_artifact_registry`, `google_storage_bucke
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
-    https://github.com/LukeStanecki/tbd-workshop-1/blob/dc12153bde6b1149e811442c7111ca511dbf4291/infracost-usage.yml  
-    https://github.com/LukeStanecki/tbd-workshop-1/blob/dc12153bde6b1149e811442c7111ca511dbf4291/.github/workflows/infracost.yml  
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/infracost-usage.yml#L1-L14 
+
+    
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/.github/workflows/infracost.yml#L1-L65 
    ***place the screenshot from infracost output here***
 
 1.  Create a BigQuery dataset and an external table using SQL
