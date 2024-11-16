@@ -60,6 +60,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 
     /.github/workflows/infracost.yml
+
     ```yml
         name: Tech Tests
 
@@ -129,6 +130,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ```
     
    ***place the screenshot from infracost output here***
+   ![infracost commit](images/infracost/infracost-iac-checks.png)
 
 1.   Create a BigQuery dataset and an external table using SQL
     
