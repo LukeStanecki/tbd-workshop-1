@@ -14,9 +14,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
   ![img.png](doc/figures/discounts.png)
 
-5. From avaialble Github Actions select and run destroy on main branch.
+4. From avaialble Github Actions select and run destroy on main branch.
    
-7. Create new git branch and:
+5. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
@@ -25,11 +25,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ***place the screenshot from GA after succesfull application of release***
     ![after merge](images/phase1-task6p2/task6ii-po mergu.png)
 
-8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
-9. Reach YARN UI
+7. Reach YARN UI
    
    ## SSH Tunnelowanie do Klastrowego Interfejsu Użytkownika
 
@@ -43,7 +43,7 @@ gcloud compute ssh tbd-cluster-m \
 
 ![yarnui.png](images/yarnui/yarnui.png)
    
-1.  Draw an architecture diagram (e.g. in draw.io) that includes:
+8.  Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
@@ -51,33 +51,33 @@ gcloud compute ssh tbd-cluster-m \
   
     ***place your diagram here***
 
-2.  Create a new PR and add costs by entering the expected consumption into Infracost
+9.  Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
     https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/infracost-usage.yml#L1-L14 
 
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/77a2e69954c6c8618e1385c79339925aa29f0ba3/.github/workflows/infracost.yml#L1-L65
     
-    https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/.github/workflows/infracost.yml#L1-L65 
    ***place the screenshot from infracost output here***
 
-1.  Create a BigQuery dataset and an external table using SQL
+10.  Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
    
     ***why does ORC not require a table schema?***
 
   
-12. Start an interactive session from Vertex AI workbench:
+11. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
    
-13. Find and correct the error in spark-job.py
+12. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+13. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
