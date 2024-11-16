@@ -136,7 +136,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 10.   Create a BigQuery dataset and an external table using SQL
     
 
-    ```sql
+    ``` sql
     CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
 
     CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
