@@ -4,7 +4,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***Z9***
+   ***9***
 
    ***[link to forked repo](https://github.com/LukeStanecki/tbd-workshop-1)***
    
