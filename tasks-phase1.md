@@ -58,8 +58,9 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ***place the expected consumption you entered here***
     https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/infracost-usage.yml#L1-L14 
 
-    https://github.com/LukeStanecki/tbd-workshop-1/blob/77a2e69954c6c8618e1385c79339925aa29f0ba3/.github/workflows/infracost.yml#L1-L65
-    '''yml
+
+    /.github/workflows/infracost.yml
+    ```yml
         name: Tech Tests
 
         on: [pull_request]
@@ -125,11 +126,11 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
                                         --github-token=${{secrets.GITHUB_TOKEN}} \
                                         --pull-request=${{github.event.pull_request.number}} \
                                         --behavior=update
-    
+    ```
     
    ***place the screenshot from infracost output here***
 
-10.  Create a BigQuery dataset and an external table using SQL
+1.   Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
    
