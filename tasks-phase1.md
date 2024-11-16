@@ -22,9 +22,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
 
     
-    ***place the screenshot from GA after succesfull application of release***
+        ***place the screenshot from GA after succesfull application of release***
 
-    ![aftermerge](images/phase1-task6p2/task6ii-po mergu.png)
+        ![pomergu.png](images/phase1-task6p2/task6ii-po-mergu.png)
 
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
@@ -42,7 +42,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
         -L 1080:tbd-cluster-m:8088 -N -n
     ```
 
-![yarnui.png](images/yarnui/yarnui.png)
+    ![yarnui.png](images/yarnui/yarnui.png)
    
 8.  Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -52,11 +52,10 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
   
     ***place your diagram here***
 
-9.  Create a new PR and add costs by entering the expected consumption into Infracost
-For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+9.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+    ***place the expected consumption you entered here***
     https://github.com/LukeStanecki/tbd-workshop-1/blob/1b4586860788c12dd3ab35783f5c5b8eb3d24026/infracost-usage.yml#L1-L14 
 
 
@@ -130,19 +129,36 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
                                     --behavior=update
     ```
     
-   ***place the screenshot from infracost output here***
-   ![infracost commit](images/infracost/infracost-iac-checks.png)
+    ***place the screenshot from infracost output here***
+    ![infracost-commit](images/infracost/infracost-iac-checks.png)
+    ![infracost-gitactions](images/infracost/infracost-gitactions.png)
 
-1.   Create a BigQuery dataset and an external table using SQL
+10. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
-   
-    ***why does ORC not require a table schema?***
 
+    ``` sql
+    CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+
+    CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+    OPTIONS (
+
+    format = 'ORC',
+    uris = ['gs://tbd-2024z-313787-data/data/shakespeare/*.orc']);
+
+
+    SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
+    ```
+
+    ![biq-query-create.png](images/bigquery/biq-query-create.png)
+
+   
+    ***Why does ORC not require a table schema?***
+    ORC (Optimized Row Columnar) is a self-describing columnar storage format, which means that it stores the schema and metadata directly within the file itself. This design eliminates the need for an external schema definition during the file creation or reading process. 
   
 11. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
+    ![vertexai](images/verexai/vertex-ai-session.png)
    
 12. Find and correct the error in spark-job.py
 
@@ -154,7 +170,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***place the link to the modified file and inserted terraform code***
     
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
