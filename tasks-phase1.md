@@ -24,7 +24,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     ***place the screenshot from GA after succesfull application of release***
 
-    ![aftermerge](images/phase1-task6p2/task6ii-po mergu.png)
+    ![task6ii-po mergu.png](images/phase1-task6p2/task6ii-po mergu.png)
 
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
@@ -133,12 +133,27 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ***place the screenshot from infracost output here***
    ![infracost commit](images/infracost/infracost-iac-checks.png)
 
-1.   Create a BigQuery dataset and an external table using SQL
+10.   Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+
+    ```sql
+    CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+
+    CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+    OPTIONS (
+    
+    format = 'ORC',
+    uris = ['gs://tbd-2024z-313787-data/data/shakespeare/*.orc']);
+
+
+    SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
+    ```
+    ![biq-query-create.png](images/bigquery/biq-query-create.png)
+
    
     ***why does ORC not require a table schema?***
-
+    ORC (Optimized Row Columnar) is a self-describing columnar storage format, which means that it stores the schema and metadata directly within the file itself. This design eliminates the need for an external schema definition during the file creation or reading process. 
   
 11. Start an interactive session from Vertex AI workbench:
 
