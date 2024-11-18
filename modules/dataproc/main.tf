@@ -54,7 +54,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
 
       disk_config {
         boot_disk_type    = "pd-standard"
-        boot_disk_size_gb = 100
+        boot_disk_size_gb = 90
       }
 
       preemptibility = "SPOT"
