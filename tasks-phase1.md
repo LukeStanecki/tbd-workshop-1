@@ -46,13 +46,39 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 8.  Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
-    2. Description of the components of service accounts
-    3. List of buckets for disposal
-    4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
-  
-    ***place your diagram here***
 
-9.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+    ***place your diagram here*** ![TBD_task8.png](images/architecture_diagram/TBD_task8.png)
+
+    2. Description of the components of service accounts
+
+    ![service_accounts.png](images/architecture_diagram/service_accounts.png)
+    - tbd-2024z-313787-data@tbd-2024z-313787.iam.gserviceaccount.com: Konto nazywane jako "tbd-composer-sa", zarządządza Cloud Composer i klastrami Dataproc. 
+    - tbd-2024z-313787-lab@tbd-2024z-313787.iam.gserviceaccount.com: Konto nazywane jako "tbd-terraform", zapewnia możliwość zarządzania z poziomu Terraform infrastrukturą projektu na Google Cloud 
+    - 926111983421-compute@developer.gserviceaccount.com: Konto nazywane jako "iac", zarządza połączeniem między Google Cloud i GitHub między innymi prze zarządza tokenami dostępu między nimi
+    
+    3. List of buckets for disposal
+
+    ![buckets.png](images/architecture_diagram/buckets.png)
+    - tbd-2024z-313787-code: Bucket z kodem związanym z Apache Spark
+    - tbd-2024z-313787-conf: Bucket z plikami konfiguracyjnymi
+    - tbd-2024z-313787-data: Bucket z danymi wygenerowanymi przez aplikację
+    - tbd-2024z-313787-state: Bucket z zachowujący stan Terraform
+
+    4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
+    ![Vertex_AI.png](images/architecture_diagram/Vertex_AI.png)
+    - tbd-cluster-w-1: worker (maszyna wirtualna) z IP: 10.10.10.2
+    - tbd-cluster-w-0: worker (maszyna wirtualna) z IP: 10.10.10.3
+    - tbd-cluster-m: master (maszyna wirtualna) z IP: 10.10.10.4
+    - tbd-2024z-313787-notebook: JupiterLab Notebook (maszyna wirtualna) z IP: 10.10.10.5
+
+    Wszystkie maszyny w subnet-01
+    Driver (port 30000): Port używany jest do komunikacji klastra z driver
+    Block manager (port 30001): Port używany do przesyłu danych wewnątrz klastra
+
+    W Apache Spark uruchomionym w Vertex AI Workbench niezbędne jest określenie host dla driver, ponieważ informuje to Spark driver, do których worker nodes wysyłać zadania, uzyskiwać dane oraz jak komunikować się z master node.
+    Jest to wymagane, ponieważ driver może działać na innej maszynie lub w innym kontenerze niż pozostałe zasoby.
+    
+10.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
     ***place the expected consumption you entered here***
@@ -133,7 +159,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![infracost-commit](images/infracost/infracost-iac-checks.png)
     ![infracost-gitactions](images/infracost/infracost-gitactions.png)
 
-10. Create a BigQuery dataset and an external table using SQL
+11. Create a BigQuery dataset and an external table using SQL
     
 
     ``` sql
@@ -155,16 +181,16 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ***Why does ORC not require a table schema?***
     ORC (Optimized Row Columnar) is a self-describing columnar storage format, which means that it stores the schema and metadata directly within the file itself. This design eliminates the need for an external schema definition during the file creation or reading process. 
   
-11. Start an interactive session from Vertex AI workbench:
+12. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
     ![vertexai](images/verexai/vertex-ai-session.png)
    
-12. Find and correct the error in spark-job.py
+13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-13. Additional tasks using Terraform:
+14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
