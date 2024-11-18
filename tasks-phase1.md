@@ -78,7 +78,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     W Apache Spark uruchomionym w Vertex AI Workbench niezbędne jest określenie host dla driver, ponieważ informuje to Spark driver, do których worker nodes wysyłać zadania, uzyskiwać dane oraz jak komunikować się z master node.
     Jest to wymagane, ponieważ driver może działać na innej maszynie lub w innym kontenerze niż pozostałe zasoby.
     
-10.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+9.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
     ***place the expected consumption you entered here***
@@ -159,7 +159,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![infracost-commit](images/infracost/infracost-iac-checks.png)
     ![infracost-gitactions](images/infracost/infracost-gitactions.png)
 
-11. Create a BigQuery dataset and an external table using SQL
+10. Create a BigQuery dataset and an external table using SQL
     
 
     ``` sql
@@ -181,16 +181,16 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ***Why does ORC not require a table schema?***
     ORC (Optimized Row Columnar) is a self-describing columnar storage format, which means that it stores the schema and metadata directly within the file itself. This design eliminates the need for an external schema definition during the file creation or reading process. 
   
-12. Start an interactive session from Vertex AI workbench:
+11. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
     ![vertexai](images/verexai/vertex-ai-session.png)
    
-13. Find and correct the error in spark-job.py
+12. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+13. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
