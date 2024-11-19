@@ -52,9 +52,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Description of the components of service accounts
 
     ![service_accounts.png](images/architecture_diagram/service_accounts.png)
-    - tbd-2024z-313787-data@tbd-2024z-313787.iam.gserviceaccount.com: Account called “tbd-composer-sa,” manages Cloud Composer and Dataproc clusters.
-    - tbd-2024z-313787-lab@tbd-2024z-313787.iam.gserviceaccount.com: Account called “tbd-terraform,” provides the ability to manage the project infrastructure on Google Cloud via Terraform.
-    - 926111983421-compute@developer.gserviceaccount.com: Account called “iac,” manages the connection between Google Cloud and GitHub, including managing access tokens between them.
+    - tbd-2024z-313787-data@tbd-2024z-313787.iam.gserviceaccount.com: Account that manages Cloud Composer and Dataproc clusters.
+    - tbd-2024z-313787-lab@tbd-2024z-313787.iam.gserviceaccount.com: Account that provides the ability to manage the project infrastructure on Google Cloud via Terraform.
+    - 926111983421-compute@developer.gserviceaccount.com: Account called that manages the connection between Google Cloud and GitHub, including managing access tokens between them.
     
     3. List of buckets for disposal
 
