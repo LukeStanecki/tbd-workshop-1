@@ -5,12 +5,15 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 1. Authors:
 
    ***z9***
+   Łukasz Stanecki
+   Krzysztof Błażejewski
+   Alina Yermakova
 
    ***[link to forked repo](https://github.com/LukeStanecki/tbd-workshop-1)***
    
-2. Follow all steps in README.md.
+3. Follow all steps in README.md.
 
-3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
+4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
   ![img.png](doc/figures/discounts.png)
 
