@@ -54,7 +54,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ![service_accounts.png](images/architecture_diagram/service_accounts.png)
     - tbd-2024z-313787-data@tbd-2024z-313787.iam.gserviceaccount.com: Account that manages Cloud Composer and Dataproc clusters.
     - tbd-2024z-313787-lab@tbd-2024z-313787.iam.gserviceaccount.com: Account that provides the ability to manage the project infrastructure on Google Cloud via Terraform.
-    - 926111983421-compute@developer.gserviceaccount.com: Account called that manages the connection between Google Cloud and GitHub, including managing access tokens between them.
+    - 926111983421-compute@developer.gserviceaccount.com: Account that manages the connection between Google Cloud and GitHub, including managing access tokens between them.
     
     3. List of buckets for disposal
 
@@ -190,21 +190,54 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 12. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+    The error before changes:
+    ![failed-job](images/spark-job/spark-job-fail.png)
+
+    Path to bucket were changed:
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/data-pipeline/resources/spark-job.py#L20-L22
+
+
+    ![complete-job](images/spark-job/spark-job-copmlete.png)
+
 
 13. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
     ***place the link to the modified file and inserted terraform code***
+
+    Generaly, support for arbitrary machine types and worker nodes are already implemented.
+
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/dataproc/variables.tf#L17-L21
+
+    If we would like to change the `machine type` we would change variable to use a diferent machine type, for example:
+
+    ``` tf
+    variable "machine_type" {
+    type        = string
+    default     = "e2-standard-4"
+    description = "Machine type to use for both worker and master nodes"
+    }
+    ```
     
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
+
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/dataproc/variables.tf#L28-L32
+
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/dataproc/main.tf#L52-L61
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
     ***place the link to the modified file and inserted terraform code***
 
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/vertex-ai-workbench/main.tf#L68-L71
+
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/vertex-ai-workbench/main.tf#L74-L78
+
     4. (Optional) Get access to Apache Spark WebUI
 
     ***place the link to the modified file and inserted terraform code***
+
+    https://github.com/LukeStanecki/tbd-workshop-1/blob/3f170219e3ea93b907d2bd1893db0e2ddc618015/modules/dataproc/main.tf#L15-L17
