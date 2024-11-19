@@ -5,8 +5,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 1. Authors:
 
    ***z9***
+   
    Łukasz Stanecki
+   
    Krzysztof Błażejewski
+   
    Alina Yermakova
 
    ***[link to forked repo](https://github.com/LukeStanecki/tbd-workshop-1)***
