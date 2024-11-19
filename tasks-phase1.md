@@ -35,8 +35,34 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+   ***Wybrany moduł: module.dbt_docker_image***
+   Opis: Moduł module.dbt_docker_image jest odpowiedzialny za tworzenie obrazu Dockera dla DBT (Data Build Tool) oraz jego rejestrację w Google Container Registry (GCR). Jest kluczowym elementem infrastruktury opartej na kontenerach, dostarczając obraz, który jest wykorzystywany w innych częściach projektu.
+Moduł module.dbt_docker_image został wybrany, ponieważ:
+* Jest niezależny w swojej konstrukcji.
+* Jest kluczowym elementem dla innych modułów (Composer, Dataproc).
+* Pokazuje, jak Terraform zarządza kontenerami i integruje je z infrastrukturą chmurową.
+
+***Zasoby w module***:
+1. ***docker_image.dbt***
+    * Tworzy obraz Dockera DBT 
+2. ***docker_registry_image.dbt***
+    * Rejestruje utworzony obraz Dockera w Google Container Registry (GCR).
+    * Zapewnia dostępność obrazu dla innych usług w infrastrukturze.
+
+***Zależności modułu:***
+Moduł module.dbt_docker_image jest niezależny w tworzeniu swoich zasobów, jednak jego rezultaty są wykorzystywane w innych częściach infrastruktury. Zależności te są widoczne w grafie Terraform.
+Wewnętrzne zależności:
+* ***docker_image.dbt -> docker_registry_image.dbt***  Ta zależność wskazuje, że obraz Dockera tworzony przez docker_image.dbt jest rejestrowany w Google Container Registry za pomocą docker_registry_image.dbt.
+Zewnętrzne zależności:
+* ***docker_image.dbt -> google_project_iam_member.dataproc-sa-user-iam *** Obraz Dockera wymaga odpowiednich uprawnień IAM dla integracji z Google Dataproc (np. obsługa użytkowników).
+* ***docker_image.dbt -> google_project_iam_member.dataproc-editor-iam***  Przypisanie ról IAM do obsługi edytora Dataproc.
+* ***docker_image.dbt -> google_composer_environment.composer_env***  Obraz Dockera jest wykorzystywany w środowisku Google Cloud Composer do obsługi przepływów pracy.
+* ***docker_image.dbt -> google_artifact_registry_repository.registry***  Obraz Dockera jest także rejestrowany w Google Artifact Registry, co pozwala na dalsze zarządzanie i dystrybucję obrazu.
+
+  ***Terraform graph:*** https://github.com/LukeStanecki/tbd-workshop-1/tree/master/phase1-task7
+
    
-7. Reach YARN UI
+8. Reach YARN UI
    
    ## SSH Tunneling to the Cluster User Interface
 
@@ -50,7 +76,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ![yarnui.png](images/yarnui/yarnui.png)
    
-8.  Draw an architecture diagram (e.g. in draw.io) that includes:
+9.  Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
 
     ***place your diagram here*** ![TBD_task8.png](images/architecture_diagram/TBD_task8.png)
@@ -85,7 +111,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     This is required because the driver may run on a different machine or container than the other resources.
     
     
-9.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+10.  Create a new PR and add costs by entering the expected consumption into Infracost. For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
     ***place the expected consumption you entered here***
@@ -166,7 +192,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![infracost-commit](images/infracost/infracost-iac-checks.png)
     ![infracost-gitactions](images/infracost/infracost-gitactions.png)
 
-10. Create a BigQuery dataset and an external table using SQL
+11. Create a BigQuery dataset and an external table using SQL
     
 
     ``` sql
@@ -188,12 +214,12 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ***Why does ORC not require a table schema?***
     ORC (Optimized Row Columnar) is a self-describing columnar storage format, which means that it stores the schema and metadata directly within the file itself. This design eliminates the need for an external schema definition during the file creation or reading process. 
   
-11. Start an interactive session from Vertex AI workbench:
+12. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
     ![vertexai](images/verexai/vertex-ai-session.png)
    
-12. Find and correct the error in spark-job.py
+13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
     The error before changes:
@@ -206,7 +232,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![complete-job](images/spark-job/spark-job-copmlete.png)
 
 
-13. Additional tasks using Terraform:
+14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
