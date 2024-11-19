@@ -60,7 +60,7 @@ Zewnętrzne zależności:
 * ***docker_image.dbt -> google_artifact_registry_repository.registry***  Obraz Dockera jest także rejestrowany w Google Artifact Registry, co pozwala na dalsze zarządzanie i dystrybucję obrazu.
 
   ***Terraform graph:*** https://github.com/LukeStanecki/tbd-workshop-1/tree/master/phase1-task7
-
+![task7.png](phase1-task7/task7.png)
    
 8. Reach YARN UI
    
