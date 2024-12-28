@@ -2,7 +2,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 ![img.png](doc/figures/destroy.png)
 
-0. The goal of this phase is to create infrastructure, perform benchmarking/scalability tests of sample three-tier lakehouse solution and analyze the results using:
+1. The goal of this phase is to create infrastructure, perform benchmarking/scalability tests of sample three-tier lakehouse solution and analyze the results using:
 * [TPC-DI benchmark](https://www.tpc.org/tpcdi/)
 * [dbt - data transformation tool](https://www.getdbt.com/)
 * [GCP Composer - managed Apache Airflow](https://cloud.google.com/composer?hl=pl)
@@ -18,11 +18,19 @@ Worth to read:
 
 2. Authors:
 
-   ***Enter your group nr***
+   ***z9***
+   
+   Łukasz Stanecki
+   
+   Krzysztof Błażejewski
+   
+   Alina Yermakova
 
-   ***Link to forked repo***
+   ***[link to forked repo](https://github.com/LukeStanecki/tbd-workshop-1)***
 
 3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
+
+![task3.png](images/phase_2a/task_3/task3.png)
 
 4. Provision your infrastructure.
 
