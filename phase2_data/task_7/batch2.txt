@@ -1,0 +1,20 @@
+total 114604
+drwxr-xr-x 2 root root      4096 Dec 28 11:41 .
+drwxr-xr-x 5 root root      4096 Dec 28 11:43 ..
+-rw-r--r-- 1 root root     76425 Dec 28 11:36 Account.txt
+-rw-r--r-- 1 root root       177 Dec 28 11:36 Account_audit.csv
+-rw-r--r-- 1 root root        12 Dec 28 11:36 BatchDate.txt
+-rw-r--r-- 1 root root    689773 Dec 28 11:43 CashTransaction.txt
+-rw-r--r-- 1 root root       211 Dec 28 11:43 CashTransaction_audit.csv
+-rw-r--r-- 1 root root    104691 Dec 28 11:36 Customer.txt
+-rw-r--r-- 1 root root       254 Dec 28 11:36 Customer_audit.csv
+-rw-r--r-- 1 root root   5313387 Dec 28 11:39 DailyMarket.txt
+-rw-r--r-- 1 root root        92 Dec 28 11:39 DailyMarket_audit.csv
+-rw-r--r-- 1 root root    246920 Dec 28 11:43 HoldingHistory.txt
+-rw-r--r-- 1 root root        86 Dec 28 11:43 HoldingHistory_audit.csv
+-rw-r--r-- 1 root root 104915964 Dec 28 11:36 Prospect.csv
+-rw-r--r-- 1 root root       141 Dec 28 11:36 Prospect_audit.csv
+-rw-r--r-- 1 root root   1862470 Dec 28 11:43 Trade.txt
+-rw-r--r-- 1 root root       209 Dec 28 11:43 Trade_audit.csv
+-rw-r--r-- 1 root root   4082347 Dec 28 11:41 WatchHistory.txt
+-rw-r--r-- 1 root root       119 Dec 28 11:41 WatchHistory_audit.csv

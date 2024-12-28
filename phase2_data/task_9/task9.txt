@@ -1,0 +1,242 @@
+Command:
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("TBD-TPC-DI-setup") \
+    .master("yarn") \
+    .enableHiveSupport() \
+    .getOrCreate()
+
+Output:
+
+:: loading settings :: url = jar:file:/usr/local/lib/python3.8/dist-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+com.databricks#spark-xml_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-7a6a7bb0-57e2-464b-9d62-9603c7da2636;1.0
+	confs: [default]
+	found com.databricks#spark-xml_2.12;0.17.0 in central
+	found commons-io#commons-io;2.11.0 in central
+	found org.glassfish.jaxb#txw2;3.0.2 in central
+	found org.apache.ws.xmlschema#xmlschema-core;2.3.0 in central
+	found org.scala-lang.modules#scala-collection-compat_2.12;2.9.0 in central
+:: resolution report :: resolve 941ms :: artifacts dl 26ms
+	:: modules in use:
+	com.databricks#spark-xml_2.12;0.17.0 from central in [default]
+	commons-io#commons-io;2.11.0 from central in [default]
+	org.apache.ws.xmlschema#xmlschema-core;2.3.0 from central in [default]
+	org.glassfish.jaxb#txw2;3.0.2 from central in [default]
+	org.scala-lang.modules#scala-collection-compat_2.12;2.9.0 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   5   |   0   |   0   |   0   ||   5   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-7a6a7bb0-57e2-464b-9d62-9603c7da2636
+	confs: [default]
+	0 artifacts copied, 5 already retrieved (0kB/31ms)
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.hadoop.shaded.org.xbill.DNS.ResolverConfig (file:/usr/local/lib/python3.8/dist-packages/pyspark/jars/hadoop-client-runtime-3.3.2.jar) to method sun.net.dns.ResolverConfiguration.open()
+WARNING: Please consider reporting this to the maintainers of org.apache.hadoop.shaded.org.xbill.DNS.ResolverConfig
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+
+24/12/28 14:12:06 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+
+24/12/28 14:12:10 WARN DomainSocketFactory: The short-circuit local reads feature cannot be used because libhadoop cannot be loaded.
+24/12/28 14:12:11 WARN Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+24/12/28 14:12:18 WARN Client: Same path resource file:///root/.ivy2/jars/com.databricks_spark-xml_2.12-0.17.0.jar added multiple times to distributed cache.
+24/12/28 14:12:18 WARN Client: Same path resource file:///root/.ivy2/jars/commons-io_commons-io-2.11.0.jar added multiple times to distributed cache.
+24/12/28 14:12:18 WARN Client: Same path resource file:///root/.ivy2/jars/org.glassfish.jaxb_txw2-3.0.2.jar added multiple times to distributed cache.
+24/12/28 14:12:18 WARN Client: Same path resource file:///root/.ivy2/jars/org.apache.ws.xmlschema_xmlschema-core-2.3.0.jar added multiple times to distributed cache.
+24/12/28 14:12:18 WARN Client: Same path resource file:///root/.ivy2/jars/org.scala-lang.modules_scala-collection-compat_2.12-2.9.0.jar added multiple times to distributed cache.
+
+Command:
+
+spark.sql("show databases").show()
+
+Output:
+
+24/12/28 14:13:49 WARN HiveClientImpl: Detected HiveConf hive.execution.engine is 'tez' and will be reset to 'mr' to disable useless hive logic
++-----------+
+|  namespace|
++-----------+
+|     bronze|
+|    default|
+|demo_bronze|
+|  demo_gold|
+|demo_silver|
+|      digen|
+|       gold|
+|     silver|
++-----------+
+
+Command:
+
+spark.sql("use bronze")
+
+Output:
+
+DataFrame[]
+
+Command:
+
+spark.sql("show tables").show()
+
+Output:
+
++---------+---------+-----------+
+|namespace|tableName|isTemporary|
++---------+---------+-----------+
++---------+---------+-----------+
+
+Command:
+
+spark.sql("use default")
+spark.sql("show tables").show()
+
+Output:
+
++---------+---------+-----------+
+|namespace|tableName|isTemporary|
++---------+---------+-----------+
++---------+---------+-----------+
+
+Command:
+
+spark.sql("use demo_bronze")
+spark.sql("show tables").show()
+
+Output:
+
++-----------+--------------------+-----------+
+|  namespace|           tableName|isTemporary|
++-----------+--------------------+-----------+
+|demo_bronze|brokerage_cash_tr...|      false|
+|demo_bronze|brokerage_daily_m...|      false|
+|demo_bronze|brokerage_holding...|      false|
+|demo_bronze|     brokerage_trade|      false|
+|demo_bronze|brokerage_trade_h...|      false|
+|demo_bronze|brokerage_watch_h...|      false|
+|demo_bronze|   crm_customer_mgmt|      false|
+|demo_bronze|     finwire_company|      false|
+|demo_bronze|   finwire_financial|      false|
+|demo_bronze|    finwire_security|      false|
+|demo_bronze|         hr_employee|      false|
+|demo_bronze|      reference_date|      false|
+|demo_bronze|  reference_industry|      false|
+|demo_bronze|reference_status_...|      false|
+|demo_bronze|  reference_tax_rate|      false|
+|demo_bronze|reference_trade_type|      false|
+|demo_bronze| syndicated_prospect|      false|
++-----------+--------------------+-----------+
+
+Command:
+
+spark.sql("use demo_gold")
+spark.sql("show tables").show()
+
+Output:
+
++---------+--------------------+-----------+
+|namespace|           tableName|isTemporary|
++---------+--------------------+-----------+
+|demo_gold|         dim_account|      false|
+|demo_gold|          dim_broker|      false|
+|demo_gold|         dim_company|      false|
+|demo_gold|        dim_customer|      false|
+|demo_gold|            dim_date|      false|
+|demo_gold|        dim_security|      false|
+|demo_gold|           dim_trade|      false|
+|demo_gold|  fact_cash_balances|      false|
+|demo_gold|fact_cash_transac...|      false|
+|demo_gold|       fact_holdings|      false|
+|demo_gold|          fact_trade|      false|
+|demo_gold|        fact_watches|      false|
++---------+--------------------+-----------+
+
+
+Command:
+
+spark.sql("use demo_silver")
+spark.sql("show tables").show()
+
+Output:
+
++-----------+-----------------+-----------+
+|  namespace|        tableName|isTemporary|
++-----------+-----------------+-----------+
+|demo_silver|         accounts|      false|
+|demo_silver|cash_transactions|      false|
+|demo_silver|        companies|      false|
+|demo_silver|        customers|      false|
+|demo_silver|     daily_market|      false|
+|demo_silver|             date|      false|
+|demo_silver|        employees|      false|
+|demo_silver|       financials|      false|
+|demo_silver| holdings_history|      false|
+|demo_silver|       securities|      false|
+|demo_silver|           trades|      false|
+|demo_silver|   trades_history|      false|
+|demo_silver|          watches|      false|
+|demo_silver|  watches_history|      false|
++-----------+-----------------+-----------+
+
+Command:
+
+spark.sql("use digen")
+spark.sql("show tables").show()
+
+Output:
+
++---------+----------------+-----------+
+|namespace|       tableName|isTemporary|
++---------+----------------+-----------+
+|    digen|cash_transaction|      false|
+|    digen|             cmp|      false|
+|    digen|   customer_mgmt|      false|
+|    digen|    daily_market|      false|
+|    digen|            date|      false|
+|    digen|             fin|      false|
+|    digen| holding_history|      false|
+|    digen|              hr|      false|
+|    digen|        industry|      false|
+|    digen|        prospect|      false|
+|    digen|             sec|      false|
+|    digen|     status_type|      false|
+|    digen|        tax_rate|      false|
+|    digen|           trade|      false|
+|    digen|   trade_history|      false|
+|    digen|      trade_type|      false|
+|    digen|   watch_history|      false|
++---------+----------------+-----------+
+
+Command:
+
+spark.sql("use gold")
+spark.sql("show tables").show()
+
+Output:
+
++---------+---------+-----------+
+|namespace|tableName|isTemporary|
++---------+---------+-----------+
++---------+---------+-----------+
+
+Command:
+
+spark.sql("use silver")
+spark.sql("show tables").show()
+
+Output:
+
++---------+---------+-----------+
+|namespace|tableName|isTemporary|
++---------+---------+-----------+
++---------+---------+-----------+

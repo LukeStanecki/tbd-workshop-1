@@ -36,8 +36,12 @@ Worth to read:
 
     a) setup Vertex AI Workbench `pyspark` kernel as described in point [8](https://github.com/bdg-tbd/tbd-workshop-1/tree/v1.0.32#project-setup) 
 
+    ![task4a.png](images/phase_2a/task_4/task4_a.png)
+
     b) upload [tpc-di-setup.ipynb](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/notebooks/tpc-di-setup.ipynb) to 
 the running instance of your Vertex AI Workbench
+
+   ![task4b.png](images/phase_2a/task_4/task4_b.png)
 
 5. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
 
@@ -52,6 +56,8 @@ the running instance of your Vertex AI Workbench
    ```
    This lines are required to run dbt on airflow but have to be commented while running dbt in notebook.
 
+   ![task5b.png](images/phase_2a/task_5/task_5b.png)
+
    c)update git clone command to point to ***your fork***.
 
  
@@ -60,6 +66,8 @@ the running instance of your Vertex AI Workbench
 6. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
     a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
+
+    ![task6a.png](images/phase_2a/task_6/task_6a.png)
 
 
    b) in the cell:
@@ -70,6 +78,9 @@ the running instance of your Vertex AI Workbench
          git pull
          ```
       replace repo with your fork. Next checkout to 'notebook' branch.
+
+      ![task6b.png](images/phase_2a/task_6/task_6b.png)
+
    
     c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI  enviroment (see git folder).
 
@@ -82,18 +93,47 @@ the running instance of your Vertex AI Workbench
        "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"
   ```
 
+   ![task6d.png](images/phase_2a/task_6/task_6d.png)
 
 7. Explore files created by generator and describe them, including format, content, total size.
 
    ***Files desccription***
 
+   ![task7_1.png](images/phase_2a/task_7/task_7_1.png)
+   ![task7_2.png](images/phase_2a/task_7/task_7_2.png)
+
+   [Full digen report](phase2_data/task_7/task7_digen_report.txt)
+
+   ![task_7_batch1.png](images/phase_2a/task_7/task_7_batch1.png)
+
+   [Full Batch1](phase2_data/task_7/batch1.txt)
+
+   ![task_7_batch2.png](images/phase_2a/task_7/task_7_batch2.png)
+
+   [Full Batch2](phase2_data/task_7/batch2.txt)
+
+   ![task_7_batch3.png](images/phase_2a/task_7/task_7_batch3.png)
+
+   [Full Batch3](phase2_data/task_7/batch3.txt)
+
+
 8. Analyze tpcdi.py. What happened in the loading stage?
 
    ***Your answer***
 
+   ![task8.png](images/phase_2a/task_8/task_8.png)
+
+   [tpcdi.py file](https://github.com/LukeStanecki/tbd-tpc-di/blob/main/tpcdi.py)
+
 9. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
+
+   ![task9_1.png](images/phase_2a/task_9/task9_1.png)
+   ![task9_2.png](images/phase_2a/task_9/task9_2.png)
+   ![task9_3.png](images/phase_2a/task_9/task9_3.png)
+
+   [commands and outputs](phase2_data/task_9/task9.txt)
 
 10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
