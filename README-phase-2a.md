@@ -168,10 +168,13 @@ the running instance of your Vertex AI Workbench
 
 10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
+   ![task10_test_1.png](images/phase_2a/task_10/task10_test_1.png)
    https://github.com/LukeStanecki/tbd-tpc-di/blob/c735031d24f9496197c24cd080c41a7f275609d7/tests/test_1.sql#L1-L7
 
+   ![task10_test_2.png](images/phase_2a/task_10/task10_test_2.png)
    https://github.com/LukeStanecki/tbd-tpc-di/blob/c735031d24f9496197c24cd080c41a7f275609d7/tests/test_2.sql#L1-L11
 
+   ![task10_test_3.png](images/phase_2a/task_10/task10_test_3.png)
    https://github.com/LukeStanecki/tbd-tpc-di/blob/c735031d24f9496197c24cd080c41a7f275609d7/tests/test_3.sql#L1-L8
 
    ```
