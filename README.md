@@ -154,7 +154,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 |------|-------------|------|---------|:--------:|
 | <a name="input_ai_notebook_instance_owner"></a> [ai\_notebook\_instance\_owner](#input\_ai\_notebook\_instance\_owner) | Vertex AI workbench owner | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
+| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-central2"` | no |
 
 ## Outputs
 
