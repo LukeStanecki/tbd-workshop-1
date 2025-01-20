@@ -80,6 +80,7 @@ module "composer" {
   depends_on     = [module.vpc]
   source         = "./modules/composer"
   project_name   = var.project_name
+  region         = var.region
   network        = module.vpc.network.network_name
   subnet_address = local.composer_subnet_address
   env_variables = {
