@@ -12,7 +12,7 @@ module "dataproc" {
   machine_type = "e2-standard-2"
 }
 ```
- 
+
 and subsititute "e2-standard-2" with "e2-standard-4".
 
 2. If needed request to increase cpu quotas (e.g. to 30 CPUs): 
